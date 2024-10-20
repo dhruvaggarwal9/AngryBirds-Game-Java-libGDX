@@ -8,7 +8,8 @@ public class Button {
     // String displayMessage;
     // int x;
     // int y;
-
+    static float buttonWidth = 50;
+    static float buttonHeight = 50;
     Texture image;
     Sprite buttonSprite;
 
@@ -16,6 +17,7 @@ public class Button {
         // displayMessage = message;
         image = new Texture(imgName);
         buttonSprite = new Sprite(image); 
+        buttonSprite.setSize(buttonWidth, buttonHeight);
     }
 
     public Sprite getButtonSprite(){  
