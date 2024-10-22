@@ -8,8 +8,8 @@ public class Button {
     // String displayMessage;
     // int x;
     // int y;
-    static float buttonWidth = 50;
-    static float buttonHeight = 50;
+    public static float buttonWidth = 50;
+    public static float buttonHeight = 50;
     Texture image;
     Sprite buttonSprite;
 
