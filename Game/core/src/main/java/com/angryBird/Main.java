@@ -3,6 +3,7 @@ package com.angryBird;
 import java.util.ArrayList;
 
 import com.angryBird.Screens.LevelScreen;
+import com.angryBird.Screens.LoadingScreen;
 import com.angryBird.Screens.MainScreen;
 import com.angryBird.Screens.SeasonsListScreen;
 import com.angryBird.objects.*;
@@ -56,14 +57,14 @@ public class   Main extends Game {
         birdsUnlocked.add(new Bird("red", "red.png"));
         levelsUnlocked.add(new Level("scene3.png", pigsAvailable, building));
         
-        seasonsAvailable.add(new Season("Season1", "season1Back.png","Season1.png", levelsUnlocked));
-        seasonsAvailable.add(new Season("Season2", "Season2.png","Season2.png", null));
-        seasonsAvailable.add(new Season("Season3", "Season3.png","Season3.png", null));
-        seasonsAvailable.add(new Season("Season4", "Season4.png","Season4.png", null));
-        seasonsAvailable.add(new Season("Season5", "Season5.png","Season5.png", null));
+        seasonsAvailable.add(new Season("Season1", "season1.png","season1.png", levelsUnlocked));
+        seasonsAvailable.add(new Season("Season2", "season2.png","season2.png", null));
+        seasonsAvailable.add(new Season("Season3", "season3.png","season3.png", null));
+        seasonsAvailable.add(new Season("Season4", "season4.png","season4.png", null));
+        seasonsAvailable.add(new Season("Season5", "season5.png","season5.png", null));
         // setScreen(new LevelScreen(level,this));
-        
-        setScreen(new MainScreen(this));
+
+        setScreen(new LoadingScreen(this));
     }
 
     public ArrayList<Season> getSeasons(){
