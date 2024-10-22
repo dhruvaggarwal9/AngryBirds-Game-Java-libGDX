@@ -37,9 +37,11 @@ public class SeasonsListScreen implements Screen {
         seasonThemes = new ArrayList<Sprite>();
         spriteBatch = new SpriteBatch();
         touch = new Vector2();
+        Button.buttonWidth = 100;
+        Button.buttonHeight = 50;
         backButton = new Button("back.png");
         backButtonSprite = backButton.getButtonSprite();
-        backgroundImage = new Texture(Gdx.files.internal("listbg.png"));
+        backgroundImage = new Texture(Gdx.files.internal("listbg1.jpg"));
 
         for (Season season : seasonsAvailable) {
             seasonThemes.add(new Sprite(season.getThemeImg()));
