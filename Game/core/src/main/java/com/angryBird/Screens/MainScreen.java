@@ -103,7 +103,7 @@ public class MainScreen implements Screen {
             if (hoveredButtonIndex == 0) {
                 game.setScreen(new SeasonsListScreen(game));
             } else if (hoveredButtonIndex == 1) {
-                //multiplayer button click
+                game.setScreen(new ComingsoonScreen(game));
             } else if (hoveredButtonIndex == 2) {
                 //profile button click
             }
