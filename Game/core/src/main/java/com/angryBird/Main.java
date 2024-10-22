@@ -3,6 +3,7 @@ package com.angryBird;
 import java.util.ArrayList;
 
 import com.angryBird.Screens.LevelScreen;
+import com.angryBird.Screens.MainScreen;
 import com.angryBird.Screens.SeasonsListScreen;
 import com.angryBird.objects.*;
 import com.badlogic.gdx.Game;
@@ -11,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class Main extends Game {
+public class   Main extends Game {
 
     ArrayList<Season> seasonsAvailable;
     ArrayList<Bird> birdsUnlocked;
@@ -62,7 +63,7 @@ public class Main extends Game {
         seasonsAvailable.add(new Season("Season5", "Season5.png","Season5.png", null));
         // setScreen(new LevelScreen(level,this));
         
-        setScreen(new SeasonsListScreen(this));
+        setScreen(new MainScreen(this));
     }
 
     public ArrayList<Season> getSeasons(){
