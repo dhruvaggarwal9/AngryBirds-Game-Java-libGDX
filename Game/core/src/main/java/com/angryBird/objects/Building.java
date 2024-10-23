@@ -35,6 +35,12 @@ public class Building {
         }
         for (Rectangle rectangle : recPositions) {
            
+            if(rectangle.getY()== 0){
+                blockSprites.add(new Sprite(blockImg));
+                blockSprites.getLast().setSize(blockImg.getWidth(),rectangle.getWidth()+20);
+                blockSprites.getLast().rotate(90);
+                blockSprites.getLast().setPosition(rectangle.getX()-5, rectangle.getY()-rectangle.getHeight()-blockImg.getWidth()); 
+            }
             blockSprites.add(new Sprite(blockImg));
             blockSprites.getLast().setSize(blockImg.getWidth(), rectangle.getHeight());
             blockSprites.getLast().setPosition(rectangle.getX(), rectangle.getY());
