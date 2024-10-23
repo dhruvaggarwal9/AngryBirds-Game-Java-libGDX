@@ -3,7 +3,6 @@ package com.angryBird;
 import java.util.ArrayList;
 
 import com.angryBird.Screens.LevelScreen;
-import com.angryBird.Screens.LoadingScreen;
 import com.angryBird.Screens.MainScreen;
 import com.angryBird.Screens.SeasonsListScreen;
 import com.angryBird.objects.*;
@@ -43,28 +42,30 @@ public class   Main extends Game {
         positions.add(new Vector2(105, 70));
         positions.add(new Vector2(70, 140));
         // positions.add(new Vector2(35, 70));
-        Block block = new Block("b1", "block.png", 10, 60);
+        Block block = new Block("b1", "block.png", 22, 90);
 
+        pigsAvailable.add(new Pig("jyadascaredpig", "p6.png", 100, 100));
+        pigsAvailable.add(new Pig("smallpig", "p1.png", 100, 100));
+        pigsAvailable.add(new Pig("scaredPig", "p4.png", 100, 100));
         pigsAvailable.add(new Pig("Badppig", "p1.png", 100, 100));
-        pigsAvailable.add(new Pig("Badppig", "p1.png", 100, 100));
-        pigsAvailable.add(new Pig("Badppig", "p1.png", 100, 100));
-        pigsAvailable.add(new Pig("Badppig", "p1.png", 100, 100));
-        pigsAvailable.add(new Pig("Badppig", "p1.png", 100, 100));
-        pigsAvailable.add(new Pig("Badppig", "p1.png", 100, 100));
+        pigsAvailable.add(new Pig("sabhyappig", "p5.png", 100, 100));
+        pigsAvailable.add(new Pig("jyadascaredPig", "p6.png", 100, 100));
 
         Building building = new Building("firstBuilding",block,positions);
         buildingsAvailable.add(building);
-        birdsUnlocked.add(new Bird("red", "red.png"));
-        levelsUnlocked.add(new Level("scene3.png", pigsAvailable, building));
+        birdsUnlocked.add(new Bird("red", "Red.png"));
+        birdsUnlocked.add(new Bird("yellow","Yellow.png"));
+        // birdsUnlocked.add(new Bird("yellow", "Yellow.png"));
+        levelsUnlocked.add(new Level("level3.png", pigsAvailable, building));
         
-        seasonsAvailable.add(new Season("Season1", "season1.png","season1.png", levelsUnlocked));
-        seasonsAvailable.add(new Season("Season2", "season2.png","season2.png", null));
-        seasonsAvailable.add(new Season("Season3", "season3.png","season3.png", null));
-        seasonsAvailable.add(new Season("Season4", "season4.png","season4.png", null));
-        seasonsAvailable.add(new Season("Season5", "season5.png","season5.png", null));
+        seasonsAvailable.add(new Season("Season1", "background.png","Season1.png", levelsUnlocked));
+        seasonsAvailable.add(new Season("Season2", "Season2.png","Season2.png", null));
+        seasonsAvailable.add(new Season("Season3", "Season3.png","Season3.png", null));
+        seasonsAvailable.add(new Season("Season4", "Season4.png","Season4.png", null));
+        seasonsAvailable.add(new Season("Season5", "Season5.png","Season5.png", null));
         // setScreen(new LevelScreen(level,this));
-
         setScreen(new LoadingScreen(this));
+        // setScreen(new MainScreen(this));
     }
 
     public ArrayList<Season> getSeasons(){
