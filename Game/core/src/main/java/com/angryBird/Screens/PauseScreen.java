@@ -15,25 +15,29 @@ public class PauseScreen implements Screen {
     // Texture background;
     Button resume;
     Button returnHome;
+    Button saveGame;
     Main game;
     LevelScreen levelScreen;
 
     Sprite backSprite;
     Sprite resumeSprite;
     Sprite returnSprite;
+    Sprite saveGameSprite;
     SpriteBatch spriteBatch;
     Vector2 touch;
     public PauseScreen(Main game,LevelScreen level){
 
-        
-        resume = new Button("resume.png");
-        returnHome = new Button("returnHome.png");
+        // Button tesButton = new 
+        resume = new Button("resume5.png");
+        returnHome = new Button("returnHome5.png");
+        saveGame = new Button("saveGame5.png");
         this.game = game;
         this.levelScreen = level;
 
-        backSprite = new Sprite(new Texture("season1Back.png"));
+        backSprite = new Sprite(new Texture("pauseBackground.jpg"));
         resumeSprite = resume.getButtonSprite();
         returnSprite = returnHome.getButtonSprite();
+        saveGameSprite = saveGame.getButtonSprite();
         spriteBatch = new SpriteBatch();
         touch = new Vector2();
 
@@ -47,8 +51,9 @@ public class PauseScreen implements Screen {
         float height = Gdx.graphics.getHeight()/10;
 
         backSprite.setSize(10*width, 10*height);
-        resumeSprite.setBounds(4*width,5*height,7*(resumeSprite.getWidth()), 3*(resumeSprite.getHeight()));
-        returnSprite.setBounds(4*width,5*height-resumeSprite.getHeight(),7*(returnSprite.getWidth()), 3*(returnSprite.getHeight()));
+        resumeSprite.setBounds(4*width,6*height,5*(50) , 2*50);
+        returnSprite.setBounds(4*width,6*height-resumeSprite.getHeight()-10,5*(50), 2*(50));
+        saveGameSprite.setBounds(4*width, 6*height-2*resumeSprite.getHeight()-20, 5*50, 2*50);
     }
 
 
@@ -79,7 +84,7 @@ public class PauseScreen implements Screen {
         backSprite.draw(spriteBatch);
         resumeSprite.draw(spriteBatch);
         returnSprite.draw(spriteBatch);
-
+        saveGameSprite.draw(spriteBatch);
         spriteBatch.end();
     }
         
