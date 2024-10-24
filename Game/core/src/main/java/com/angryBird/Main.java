@@ -3,6 +3,7 @@ package com.angryBird;
 import java.util.ArrayList;
 
 import com.angryBird.Screens.LevelScreen;
+import com.angryBird.Screens.LoadingScreen;
 import com.angryBird.Screens.MainScreen;
 import com.angryBird.Screens.SeasonsListScreen;
 import com.angryBird.objects.*;
@@ -58,7 +59,7 @@ public class   Main extends Game {
         // birdsUnlocked.add(new Bird("yellow", "Yellow.png"));
         levelsUnlocked.add(new Level("level3.png", pigsAvailable, building));
         
-        seasonsAvailable.add(new Season("Season1", "background.png","Season1.png", levelsUnlocked));
+        seasonsAvailable.add(new Season("Season1", "levelMap.jpg","Season1.png", levelsUnlocked));
         seasonsAvailable.add(new Season("Season2", "Season2.png","Season2.png", null));
         seasonsAvailable.add(new Season("Season3", "Season3.png","Season3.png", null));
         seasonsAvailable.add(new Season("Season4", "Season4.png","Season4.png", null));
