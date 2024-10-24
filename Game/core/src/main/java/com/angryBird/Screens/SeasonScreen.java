@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.angryBird.Main;
 import com.angryBird.objects.Button;
+import com.angryBird.objects.Level;
 import com.angryBird.objects.Season;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -17,14 +18,19 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class SeasonScreen implements Screen{
     
     Button backButton;
+    Button continueButton;
+    Button newGameButton;
     Season season;
     Main game;
 
     Sprite backButtonSprite;
     Sprite backgroundSprite;
+    // Sprite optionsBack;
+    Sprite newGameSprite;
+    Sprite continueSprite; 
     SpriteBatch spriteBatch;
-
-
+    boolean clickedLevel = false;
+    Level selectedLevel;
 
     ArrayList<Vector2> levelIconPositons = new ArrayList<Vector2>();
     ArrayList<Sprite> levelIcons = new ArrayList<Sprite>();
@@ -34,32 +40,38 @@ public class SeasonScreen implements Screen{
     
     public SeasonScreen(Main game,Season season){
 
-        backButton = new Button("back.png");
+        backButton = new Button("back4.png");
+        newGameButton = new Button("newGame5.png");
+        continueButton = new Button("continue5.png");
         this.game = game;
         this.season = season;
 
+
         backButtonSprite =  backButton.getButtonSprite(); 
         backgroundSprite = new Sprite(season.getBackground());
+        newGameSprite = newGameButton.getButtonSprite();
+        continueSprite = continueButton.getButtonSprite();
         spriteBatch = new SpriteBatch();
 
         touch = new Vector2();
 
-        levelIconPositons.add(new Vector2(192, 108));
-        levelIconPositons.add(new Vector2(500, 280));
-        levelIconPositons.add(new Vector2(800, 395));
-        levelIconPositons.add(new Vector2(1100, 315));
-        levelIconPositons.add(new Vector2(1300, 450));
-        levelIconPositons.add(new Vector2(1500, 650));
-        levelIconPositons.add(new Vector2(1800, 900));
+        
+        levelIconPositons.add(new Vector2(192, 4*108+50));
+        levelIconPositons.add(new Vector2(500, 6*108+50));
+        levelIconPositons.add(new Vector2(800, 4*108));
+        levelIconPositons.add(new Vector2(1100, 5*108));
+        levelIconPositons.add(new Vector2(1300+40, 4*108));
+        levelIconPositons.add(new Vector2(1520,5*108));
+        levelIconPositons.add(new Vector2(1700, 6*108-40));
 
 
-        levelIcons.add(new Sprite(new Texture("back.png")));
-        levelIcons.add(new Sprite(new Texture("back.png")));
-        levelIcons.add(new Sprite(new Texture("back.png")));
-        levelIcons.add(new Sprite(new Texture("back.png")));
-        levelIcons.add(new Sprite(new Texture("back.png")));
-        levelIcons.add(new Sprite(new Texture("back.png")));
-        levelIcons.add(new Sprite(new Texture("back.png")));
+        levelIcons.add(new Sprite(new Texture("01.png")));
+        levelIcons.add(new Sprite(new Texture("02.png")));
+        levelIcons.add(new Sprite(new Texture("03.png")));
+        levelIcons.add(new Sprite(new Texture("04.png")));
+        levelIcons.add(new Sprite(new Texture("05.png")));
+        levelIcons.add(new Sprite(new Texture("06.png")));
+        levelIcons.add(new Sprite(new Texture("07.png")));
 
         setPosition();
 
@@ -69,13 +81,16 @@ public class SeasonScreen implements Screen{
 
     public void setPosition() {
         // Resize your screen here. The parameters represent the new window size.
-        
+        backButtonSprite.setSize(70, 70);
         for(int i = 0; i<levelIconPositons.size(); i++){
 
-            levelIcons.get(i).setBounds(levelIconPositons.get(i).x, levelIconPositons.get(i).y, backButtonSprite.getWidth()-10,backButtonSprite.getHeight()-10);
+            levelIcons.get(i).setBounds(levelIconPositons.get(i).x, levelIconPositons.get(i).y,60,60);
             
         }
 
+        newGameSprite.setBounds(4*Gdx.graphics.getWidth()/10, Gdx.graphics.getHeight()/5 - 2*newGameSprite.getHeight()-10,6*50,2*50);
+        continueSprite.setBounds(4*Gdx.graphics.getWidth()/10, Gdx.graphics.getHeight()/5,6*50,2*50);
+        
         backButtonSprite.setPosition(0,Gdx.graphics.getHeight() - backButtonSprite.getHeight());
         
         
@@ -96,12 +111,22 @@ public class SeasonScreen implements Screen{
                 for (Sprite sprite : levelIcons) {
                     if(i<season.getLevels().size()){
                         if(sprite.getBoundingRectangle().contains(touch)){
-                            game.setScreen(new LevelScreen(game,season.getLevels().get(i)));
+                            clickedLevel = true;
+                            selectedLevel = season.getLevels().get(i);
+                            // game.setScreen(new LevelScreen(game,season.getLevels().get(i)));
                         }
                     }
                     i++;
 
                 }
+            }
+
+            if(newGameSprite.getBoundingRectangle().contains(touch)){
+                game.setScreen(new LevelScreen(game,selectedLevel));
+            }
+
+            if(continueSprite.getBoundingRectangle().contains(touch)){
+                //
             }
             
         }
@@ -126,6 +151,10 @@ public class SeasonScreen implements Screen{
             sprite.draw(spriteBatch);
         }
 
+        if(clickedLevel == true){
+            continueSprite.draw(spriteBatch);
+            newGameSprite.draw(spriteBatch);
+        }
         backButtonSprite.draw(spriteBatch);
         
         spriteBatch.end();
