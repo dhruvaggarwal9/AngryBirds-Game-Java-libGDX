@@ -46,7 +46,7 @@ public class LevelScreen implements Screen {
 
         birdBase = new Texture("base.png");
         pigBase = new Texture("stone3.png");
-        pauseButton = new Button("pause.png");
+        pauseButton = new Button("pause4.png");
         this.level = level;
         this.game = game;
 
@@ -119,7 +119,7 @@ public class LevelScreen implements Screen {
 
 
         ///building///
-
+        pauseButtonSprite.setSize(60,60);
         pauseButtonSprite.setPosition(0,10*(height-20)-pauseButtonSprite.getHeight());
         backgroundSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
