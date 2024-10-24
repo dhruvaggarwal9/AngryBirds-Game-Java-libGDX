@@ -18,7 +18,7 @@ public class MainScreen implements Screen {
     private Button multiPlayerButton;
     private Button profileButton;
     private Main game;
-
+    private Button settingButton;
 
     private static final float Y_OPTIONS = 31f;
 
@@ -38,7 +38,7 @@ public class MainScreen implements Screen {
         singlePlayerButton = new Button("mainplay.png");
         multiPlayerButton = new Button("multiplayer.png");
         profileButton = new Button("profile.png");
-
+        settingButton = new Button("setting.png");
         float buttonWidth = 400f;
         float buttonHeight = 200f;
         float screenWidth = Gdx.graphics.getWidth();
@@ -47,14 +47,17 @@ public class MainScreen implements Screen {
         Sprite singlePlayerSprite = singlePlayerButton.getButtonSprite();
         Sprite multiPlayerSprite = multiPlayerButton.getButtonSprite();
         Sprite profileSprite = profileButton.getButtonSprite();
+        Sprite settingSprite = settingButton.getButtonSprite();
 
         singlePlayerSprite.setSize(buttonWidth, buttonHeight);
         multiPlayerSprite.setSize(buttonWidth, buttonHeight);
         profileSprite.setSize(buttonWidth, buttonHeight);
+        settingSprite.setSize(80, 80);
 
         singlePlayerSprite.setPosition(BUTTON_GAP, Y_OPTIONS);
         multiPlayerSprite.setPosition(singlePlayerSprite.getX() + singlePlayerSprite.getWidth() + BUTTON_GAP, Y_OPTIONS);
         profileSprite.setPosition(multiPlayerSprite.getX() + multiPlayerSprite.getWidth() + BUTTON_GAP, Y_OPTIONS);
+        settingSprite.setPosition(screenWidth-settingSprite.getWidth(), screenHeight-settingSprite.getHeight());
     }
 
     @Override
@@ -70,6 +73,7 @@ public class MainScreen implements Screen {
         drawButton(singlePlayerButton.getButtonSprite(), 0);
         drawButton(multiPlayerButton.getButtonSprite(), 1);
         drawButton(profileButton.getButtonSprite(), 2);
+        drawButton(settingButton.getButtonSprite(), 3);
 
         spriteBatch.end();
     }
@@ -98,6 +102,9 @@ public class MainScreen implements Screen {
         } else if (profileButton.getButtonSprite().getBoundingRectangle().contains(touchX, touchY)) {
             hoveredButtonIndex = 2;
         }
+        else if(settingButton.getButtonSprite().getBoundingRectangle().contains(touchX,touchY)){
+            hoveredButtonIndex = 3;
+        }
 
         if (Gdx.input.justTouched()) {
             if (hoveredButtonIndex == 0) {
@@ -106,7 +113,10 @@ public class MainScreen implements Screen {
                 game.setScreen(new ComingsoonScreen(game));
             } else if (hoveredButtonIndex == 2) {
                 //profile button click
+            }else if(hoveredButtonIndex == 3){
+                game.setScreen(new SettingsScreen(game, this));
             }
+            
         }
     }
 
