@@ -18,16 +18,17 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class SeasonScreen implements Screen{
     
     Button backButton;
-    Button continueButton;
-    Button newGameButton;
+    // Button continueButton;
+    // Button newGameButton;
     Season season;
     Main game;
 
     Sprite backButtonSprite;
     Sprite backgroundSprite;
+    Sprite blurBackgroundSprite;      // used in displaying the levelStatusscreen
     // Sprite optionsBack;
-    Sprite newGameSprite;
-    Sprite continueSprite; 
+    // Sprite newGameSprite;
+    // Sprite continueSprite; 
     SpriteBatch spriteBatch;
     boolean clickedLevel = false;
     Level selectedLevel;
@@ -41,16 +42,16 @@ public class SeasonScreen implements Screen{
     public SeasonScreen(Main game,Season season){
 
         backButton = new Button("back4.png");
-        newGameButton = new Button("newGame5.png");
-        continueButton = new Button("continue5.png");
+        // newGameButton = new Button("newGame5.png");
+        // continueButton = new Button("continue5.png");
         this.game = game;
         this.season = season;
-
+        this.blurBackgroundSprite = new Sprite(season.getBlurBackground());
 
         backButtonSprite =  backButton.getButtonSprite(); 
         backgroundSprite = new Sprite(season.getBackground());
-        newGameSprite = newGameButton.getButtonSprite();
-        continueSprite = continueButton.getButtonSprite();
+        // newGameSprite = newGameButton.getButtonSprite();
+        // continueSprite = continueButton.getButtonSprite();
         spriteBatch = new SpriteBatch();
 
         touch = new Vector2();
@@ -77,6 +78,9 @@ public class SeasonScreen implements Screen{
 
     }
 
+    public Sprite getBlurBackground(){
+        return blurBackgroundSprite;
+    }
 
 
     public void setPosition() {
@@ -88,8 +92,8 @@ public class SeasonScreen implements Screen{
             
         }
 
-        newGameSprite.setBounds(4*Gdx.graphics.getWidth()/10, Gdx.graphics.getHeight()/5 - 2*newGameSprite.getHeight()-10,6*50,2*50);
-        continueSprite.setBounds(4*Gdx.graphics.getWidth()/10, Gdx.graphics.getHeight()/5,6*50,2*50);
+        // newGameSprite.setBounds(4*Gdx.graphics.getWidth()/10, Gdx.graphics.getHeight()/5 - 2*newGameSprite.getHeight()-10,6*50,2*50);
+        // continueSprite.setBounds(4*Gdx.graphics.getWidth()/10, Gdx.graphics.getHeight()/5,6*50,2*50);
         
         backButtonSprite.setPosition(0,Gdx.graphics.getHeight() - backButtonSprite.getHeight());
         
@@ -109,10 +113,11 @@ public class SeasonScreen implements Screen{
             else{
                 int i = 0;
                 for (Sprite sprite : levelIcons) {
-                    if(i<season.getLevels().size()){
+                    if(i<season.getLevels().size()){   // this makes sure only unlocked level can be played
                         if(sprite.getBoundingRectangle().contains(touch)){
-                            clickedLevel = true;
-                            selectedLevel = season.getLevels().get(i);
+                            // clickedLevel = true;
+                            // selectedLevel = season.getLevels().get(i);
+                            game.setScreen(new GameStatusScreen(game, this, season.getLevels().get(i)));
                             // game.setScreen(new LevelScreen(game,season.getLevels().get(i)));
                         }
                     }
@@ -121,13 +126,13 @@ public class SeasonScreen implements Screen{
                 }
             }
 
-            if(newGameSprite.getBoundingRectangle().contains(touch)){
-                game.setScreen(new LevelScreen(game,selectedLevel));
-            }
+            // if(newGameSprite.getBoundingRectangle().contains(touch)){
+            //     game.setScreen(new LevelScreen(game,selectedLevel));
+            // }
 
-            if(continueSprite.getBoundingRectangle().contains(touch)){
-                //
-            }
+            // if(continueSprite.getBoundingRectangle().contains(touch)){
+            //     //
+            // }
             
         }
     }
@@ -151,10 +156,10 @@ public class SeasonScreen implements Screen{
             sprite.draw(spriteBatch);
         }
 
-        if(clickedLevel == true){
-            continueSprite.draw(spriteBatch);
-            newGameSprite.draw(spriteBatch);
-        }
+        // if(clickedLevel == true){
+        //     continueSprite.draw(spriteBatch);
+        //     newGameSprite.draw(spriteBatch);
+        // }
         backButtonSprite.draw(spriteBatch);
         
         spriteBatch.end();
