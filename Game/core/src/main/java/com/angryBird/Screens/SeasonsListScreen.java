@@ -39,7 +39,7 @@ public class SeasonsListScreen implements Screen {
         touch = new Vector2();
         Button.buttonWidth = 100;
         Button.buttonHeight = 50;
-        backButton = new Button("back.png");
+        backButton = new Button("back4.png");
         backButtonSprite = backButton.getButtonSprite();
         backgroundImage = new Texture(Gdx.files.internal("listbg1.jpg"));
 
@@ -77,7 +77,7 @@ public class SeasonsListScreen implements Screen {
             sprite.setBounds(xPos, bottomRowY, boxWidth, boxHeight);
             sprite.setOriginCenter();
         }
-
+        backButtonSprite.setSize(80, 80);
         backButtonSprite.setPosition(20, EDGE_PADDING);
     }
 
