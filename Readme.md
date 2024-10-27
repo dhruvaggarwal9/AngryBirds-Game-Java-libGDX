@@ -24,7 +24,7 @@ are steps to set up.
   b.Download Zip file and Extract it.
 
 3: How to Run?
-	Method I:
+ Method I:
       In Linux OS or Mac OS	
           a.The Extracted Zip file contains “Game” folder.
           b.Open this Game directory in terminal.
