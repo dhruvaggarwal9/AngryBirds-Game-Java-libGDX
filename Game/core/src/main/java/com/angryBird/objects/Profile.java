@@ -2,10 +2,10 @@ package com.angryBird.objects;
 
 public class Profile {
     
-    String userName;
-    String userID;
-    int totalStarsachieved;
-    int currentLevel;
+    private String userName;
+    private String userID;
+    private int totalStarsachieved;
+    private int currentLevel;
     
     
     public Profile(String userName,String userID,int totalStars,int currLevel){

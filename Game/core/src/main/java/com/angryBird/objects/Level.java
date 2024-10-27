@@ -10,10 +10,10 @@ public class Level {
     
 
 
-    Texture backImg;
-    Catapult catapult;
-    Building building;
-    ArrayList<Pig> pigEnemies;
+    private Texture backImg;
+    private Catapult catapult;
+    private Building building;
+    private ArrayList<Pig> pigEnemies;
     
     // HashMap<Pig,Sprite> pigEnemy;
 

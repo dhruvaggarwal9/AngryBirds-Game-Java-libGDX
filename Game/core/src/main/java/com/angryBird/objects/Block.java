@@ -4,11 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Block {
     
-    String blocktype;
-    Texture img;
+    private String blocktype;
+    private Texture img;
 
-    float width;
-    float height;
+    private float width;
+    private float height;
 
     boolean horizontal;
     public Block(String blocktype,String img,float width,float height){

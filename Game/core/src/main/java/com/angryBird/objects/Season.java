@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Season {
     
-    String seasonName;
-    Texture seasonBackground;
-    Texture seasonTheme;
-    Texture blurBackgroundImage;
-    ArrayList<Level> levels;
+    private String seasonName;
+    private Texture seasonBackground;
+    private Texture seasonTheme;
+    private Texture blurBackgroundImage;
+    private ArrayList<Level> levels;
     //SEASON SCREEN WILL HAVE RECTANGLES CREATED TO SHOW LEVELS
     public Season(String seasonName,String backgroundImg,String themeImg,String blurBackgroundImage,ArrayList<Level> levels){
 

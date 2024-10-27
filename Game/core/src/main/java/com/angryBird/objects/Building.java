@@ -10,11 +10,11 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Building {
     
-    String name;
-    ArrayList<Vector2> Positions;
-    ArrayList<Rectangle> recPositions;
-    ArrayList<Sprite> blockSprites;
-    Texture blockImg;
+    private String name;
+    private ArrayList<Vector2> Positions;
+    private ArrayList<Rectangle> recPositions;
+    private ArrayList<Sprite> blockSprites;
+    private Texture blockImg;
 
     public Building(String n,Block block,ArrayList<Vector2> positions){
 

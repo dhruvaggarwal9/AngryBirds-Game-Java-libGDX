@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Character {
     
-    String myName;
-    Texture myImg;
-    int Health;
+    private  String myName;
+    protected Texture myImg;
+    protected int Health;
 
     public Character(String name,String imgName){
         

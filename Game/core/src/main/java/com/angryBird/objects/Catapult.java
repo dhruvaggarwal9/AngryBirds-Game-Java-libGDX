@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Catapult {
     
-    String name;
-    Texture img;
+    private String name;
+    private Texture img;
     
     Catapult(String name,String img){
         
