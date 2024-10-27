@@ -9,6 +9,7 @@ import com.angryBird.objects.Level;
 // import com.angryBird.objects.Level1;
 import com.angryBird.objects.Pig;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,13 +22,13 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class LevelScreen implements Screen {
-    
+
     Texture birdBase;
     Texture pigBase;
     Button pauseButton;
     Level level;
     Main game;
-    
+
     Sprite birdBaseSprite;
     Sprite pigBaseSprite;
     Sprite pauseButtonSprite;
@@ -61,7 +62,7 @@ public class LevelScreen implements Screen {
         groundLayer = new Sprite(new Texture("groundlayer2.png"));
         touch = new Vector2();
         spriteBatch = new SpriteBatch();
-        
+
         for (Bird bird : game.getBirdsUnlocked()) {
             birdSprites.add(new Sprite(bird.getImg()));
         }
@@ -85,24 +86,24 @@ public class LevelScreen implements Screen {
         // catapultSprite.setScale(3/4);
         catapultSprite.setBounds(birdBaseSprite.getX() + birdBaseSprite.getWidth()/2+40, birdBaseSprite.getY()+birdBaseSprite.getHeight()-20,catapultSprite.getWidth()*3/4,catapultSprite.getHeight()*3/4);
 
-     
+
         for (Sprite sprite : birdSprites) {
-            
+
             if(sprite.equals(birdSprites.getFirst())){
-                
+
 
                 sprite.setSize(sprite.getWidth()*3/4, sprite.getHeight()*3/4);
                 sprite.setCenter(catapultSprite.getX()+20,catapultSprite.getY() + catapultSprite.getHeight()-20);
-                
+
 
             }
             else{
-                
+
                 sprite.setSize(sprite.getWidth()*3/4, sprite.getHeight()*3/4);
                 sprite.setCenter(birdBaseSprite.getX()+birdBaseSprite.getWidth()-30-50*(birdSprites.indexOf(sprite)+1),sprite.getHeight()+catapultSprite.getY()-15);
-          
+
             }
-            
+
         }
 
         //setPostion// of pig
@@ -135,8 +136,16 @@ public class LevelScreen implements Screen {
             if(pauseButtonSprite.getBoundingRectangle().contains(touch)){
                 game.setScreen(new PauseScreen(game,this));
             }
-          
+
         }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+            game.setScreen(new WinScreen(game));
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            game.setScreen(new LoseScreen(game));
+        }
+
 
     }
 
@@ -144,13 +153,13 @@ public class LevelScreen implements Screen {
     @Override
     public void render(float delta) {
         // Draw your screen here. "delta" is the time since last render in seconds.
-        
+
         handleInput();
 
         spriteBatch.begin();
         ScreenUtils.clear(Color.BLACK);
 
-        
+
         backgroundSprite.draw(spriteBatch);
 
         //building//
@@ -166,7 +175,7 @@ public class LevelScreen implements Screen {
             birdSprite.draw(spriteBatch);
         }
 
-        
+
         for (Sprite blockSprite : blockSprites) {
             blockSprite.draw(spriteBatch);
         }
@@ -217,7 +226,7 @@ public class LevelScreen implements Screen {
     public void dispose() {
         // Destroy screen's assets here.
 
-        level.getBuilding().translate(-pigBaseSprite.getX(),-(pigBaseSprite.getY() + pigBaseSprite.getHeight()+10)); 
+        level.getBuilding().translate(-pigBaseSprite.getX(),-(pigBaseSprite.getY() + pigBaseSprite.getHeight()+10));
     }
 
 
