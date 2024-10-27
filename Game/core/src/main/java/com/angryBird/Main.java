@@ -15,12 +15,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class   Main extends Game {
 
-    ArrayList<Season> seasonsAvailable;
-    ArrayList<Bird> birdsUnlocked;
-    ArrayList<Pig> pigsAvailable;
-    ArrayList<Building> buildingsAvailable;
-    ArrayList<Level> levelsUnlocked ;
-    ArrayList<Vector2> positions;
+    private ArrayList<Season> seasonsAvailable;
+    private ArrayList<Bird> birdsUnlocked;
+    private ArrayList<Pig> pigsAvailable;
+    private ArrayList<Building> buildingsAvailable;
+    private ArrayList<Level> levelsUnlocked ;
+    private ArrayList<Vector2> positions;
     public FitViewport viewport = new FitViewport(16, 9);
     @Override
     public void create() {
