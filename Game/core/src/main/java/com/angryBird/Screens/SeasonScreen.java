@@ -17,26 +17,26 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class SeasonScreen implements Screen{
     
-    Button backButton;
+    private Button backButton;
     // Button continueButton;
     // Button newGameButton;
-    Season season;
-    Main game;
+    private Season season;
+    private Main game;
 
-    Sprite backButtonSprite;
-    Sprite backgroundSprite;
-    Sprite blurBackgroundSprite;      // used in displaying the levelStatusscreen
+    private Sprite backButtonSprite;
+    private Sprite backgroundSprite;
+    private Sprite blurBackgroundSprite;      // used in displaying the levelStatusscreen
     // Sprite optionsBack;
     // Sprite newGameSprite;
     // Sprite continueSprite; 
-    SpriteBatch spriteBatch;
+    private SpriteBatch spriteBatch;
     boolean clickedLevel = false;
-    Level selectedLevel;
+    private Level selectedLevel;
 
-    ArrayList<Vector2> levelIconPositons = new ArrayList<Vector2>();
-    ArrayList<Sprite> levelIcons = new ArrayList<Sprite>();
+    private ArrayList<Vector2> levelIconPositons = new ArrayList<Vector2>();
+    private ArrayList<Sprite> levelIcons = new ArrayList<Sprite>();
 
-    Vector2 touch;
+    private Vector2 touch;
     
     
     public SeasonScreen(Main game,Season season){
@@ -196,6 +196,16 @@ public class SeasonScreen implements Screen{
     @Override
     public void dispose() {
         // Destroy screen's assets here.
+        backButtonSprite.getTexture().dispose();
+        backgroundSprite.getTexture().dispose();
+        blurBackgroundSprite.getTexture().dispose();
+  
+        spriteBatch.dispose();
+
+        ArrayList<Sprite> levelIcons = new ArrayList<Sprite>();
+        for (Sprite sprite : levelIcons) {
+            sprite.getTexture().dispose();
+        }
     }
 
 

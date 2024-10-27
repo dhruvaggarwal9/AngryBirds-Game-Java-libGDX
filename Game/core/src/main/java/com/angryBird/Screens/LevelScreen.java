@@ -23,24 +23,24 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class LevelScreen implements Screen {
 
-    Texture birdBase;
-    Texture pigBase;
-    Button pauseButton;
-    Level level;
-    Main game;
+    private Texture birdBase;
+    private Texture pigBase;
+    private Button pauseButton;
+    private Level level;
+    private Main game;
 
-    Sprite birdBaseSprite;
-    Sprite pigBaseSprite;
-    Sprite pauseButtonSprite;
-    Sprite catapultSprite;
-    ArrayList<Sprite> birdSprites;
-    ArrayList<Sprite> pigSprites;
-    Sprite backgroundSprite;
-    Sprite grass;
-    Sprite groundLayer;
-    ArrayList<Sprite> blockSprites;
-    Vector2 touch;
-    SpriteBatch spriteBatch;
+    private Sprite birdBaseSprite;
+    private Sprite pigBaseSprite;
+    private Sprite pauseButtonSprite;
+    private Sprite catapultSprite;
+    private ArrayList<Sprite> birdSprites;
+    private ArrayList<Sprite> pigSprites;
+    private Sprite backgroundSprite;
+    private Sprite grass;
+    private Sprite groundLayer;
+    private ArrayList<Sprite> blockSprites;
+    private Vector2 touch;
+    private SpriteBatch spriteBatch;
 
 
     public LevelScreen(Main game,Level level){
@@ -139,10 +139,12 @@ public class LevelScreen implements Screen {
 
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+            dispose();
             game.setScreen(new WinScreen(game));
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            dispose();
             game.setScreen(new LoseScreen(game));
         }
 
@@ -227,6 +229,7 @@ public class LevelScreen implements Screen {
         // Destroy screen's assets here.
 
         level.getBuilding().translate(-pigBaseSprite.getX(),-(pigBaseSprite.getY() + pigBaseSprite.getHeight()+10));
+        
     }
 
 

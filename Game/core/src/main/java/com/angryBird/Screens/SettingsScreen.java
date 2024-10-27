@@ -19,21 +19,19 @@ public class SettingsScreen implements Screen {
     
 
         
-    Button backButton;
-    Button musicLevel;
-    Button soundLevel;
+    private Button backButton;
+    private Button musicLevel;
+    private Button soundLevel;
 
-    Main game;
-    MainScreen mainScreen;
-    Sprite musicSprite;
-    Sprite soundSprite;
-    Sprite backButtonSprite;
-    Sprite backgroundSprite;
+    private Main game;
+    private MainScreen mainScreen;
+    private Sprite musicSprite;
+    private Sprite soundSprite;
+    private Sprite backButtonSprite;
+    private Sprite backgroundSprite;
 
-    SpriteBatch spriteBatch;
-
-
-    Vector2 touch;
+    private SpriteBatch spriteBatch;
+    private Vector2 touch;
     
     
     public SettingsScreen(Main game,MainScreen mainScreen){
@@ -135,6 +133,12 @@ public class SettingsScreen implements Screen {
     @Override
     public void dispose() {
         // Destroy screen's assets here.
+        musicSprite.getTexture().dispose();
+        soundSprite.getTexture().dispose();
+        backButtonSprite.getTexture().dispose();
+        backgroundSprite.getTexture().dispose();
+    
+        spriteBatch.dispose();
     }
 
 

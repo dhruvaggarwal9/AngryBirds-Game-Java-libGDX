@@ -13,18 +13,18 @@ import com.badlogic.gdx.math.Vector2;
 public class PauseScreen implements Screen {
     
     // Texture background;
-    Button resume;
-    Button returnHome;
-    Button saveGame;
-    Main game;
-    LevelScreen levelScreen;
+    private Button resume;
+    private Button returnHome;
+    private Button saveGame;
+    private Main game;
+    private LevelScreen levelScreen;
 
-    Sprite backSprite;
-    Sprite resumeSprite;
-    Sprite returnSprite;
-    Sprite saveGameSprite;
-    SpriteBatch spriteBatch;
-    Vector2 touch;
+    private Sprite backSprite;
+    private Sprite resumeSprite;
+    private Sprite returnSprite;
+    private Sprite saveGameSprite;
+    private SpriteBatch spriteBatch;
+    private Vector2 touch;
     public PauseScreen(Main game,LevelScreen level){
 
         // Button tesButton = new 
@@ -117,6 +117,11 @@ public class PauseScreen implements Screen {
     @Override
     public void dispose() {
         // Destroy screen's assets here.
+        backSprite.getTexture().dispose();
+        resumeSprite.getTexture().dispose();
+        returnSprite.getTexture().dispose();
+        saveGameSprite.getTexture().dispose();
+        spriteBatch.dispose();
     }
 
 

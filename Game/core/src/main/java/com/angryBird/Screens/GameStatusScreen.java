@@ -12,19 +12,19 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GameStatusScreen implements Screen {
  
-    Button crossButton;
-    Button newGameButton;
-    Button continueButton;
-    Main game;
-    Level selectedLevel;
-    SeasonScreen seasonScreen;
+    private Button crossButton;
+    private Button newGameButton;
+    private Button continueButton;
+    private Main game;
+    private Level selectedLevel;
+    private SeasonScreen seasonScreen;
 
-    Sprite backgroundSprite;
-    Sprite crossButtonSprite;
-    Sprite newGameSprite;
-    Sprite continueSprite;
-    SpriteBatch spriteBatch;
-    Vector2 touch;
+    private Sprite backgroundSprite;
+    private Sprite crossButtonSprite;
+    private Sprite newGameSprite;
+    private Sprite continueSprite;
+    private SpriteBatch spriteBatch;
+    private Vector2 touch;
 
 
     public GameStatusScreen(Main game,SeasonScreen seasonScreen,Level selectedLevel){
@@ -126,6 +126,12 @@ public class GameStatusScreen implements Screen {
     @Override
     public void dispose() {
         // Destroy screen's assets here.
+
+        backgroundSprite.getTexture().dispose();
+        crossButtonSprite.getTexture().dispose();
+        newGameSprite.getTexture().dispose();
+        continueSprite.getTexture().dispose();
+        spriteBatch.dispose();
     }
 
 
