@@ -59,11 +59,11 @@ public class   Main extends Game {
         // birdsUnlocked.add(new Bird("yellow", "Yellow.png"));
         levelsUnlocked.add(new Level("level3.png", pigsAvailable, building));
         
-        seasonsAvailable.add(new Season("Season1", "levelMap.jpg","Season1.png","levelMapBlur.png", levelsUnlocked));
-        seasonsAvailable.add(new Season("Season2", "Season2.png","Season2.png","levelMapBlur.png", null));
-        seasonsAvailable.add(new Season("Season3", "Season3.png","Season3.png", "levelMapBlur.png",null));
-        seasonsAvailable.add(new Season("Season4", "Season4.png","Season4.png", "levelMapBlur.png",null));
-        seasonsAvailable.add(new Season("Season5", "Season5.png","Season5.png", "levelMapBlur.png",null));
+        seasonsAvailable.add(new Season("Season1", "LevelMap.jpg","Season-1.png","levelMapBlur.png", levelsUnlocked));
+        seasonsAvailable.add(new Season("Season2", "LevelMap.png","Season-2.png","levelMapBlur.png", null));
+        seasonsAvailable.add(new Season("Season3", "LevelMap.png","Season-3.png", "levelMapBlur.png",null));
+        seasonsAvailable.add(new Season("Season4", "LevelMap.png","Season-4.png", "levelMapBlur.png",null));
+        seasonsAvailable.add(new Season("Season5", "LevelMap.png","Season-5.png", "levelMapBlur.png",null));
         // setScreen(new LevelScreen(level,this));
         setScreen(new LoadingScreen(this));
         // setScreen(new MainScreen(this));
