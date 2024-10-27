@@ -20,14 +20,11 @@ public class ComingsoonScreen implements Screen {
         this.game = game;
         batch = new SpriteBatch();
 
-        // Load background
         background = new Texture("comingsoon.png");
 
-        // Set button size before creating the button instance
         Button.buttonWidth = 300;
         Button.buttonHeight = 150;
 
-        // Initialize back button
         backButton = new Button("backcs.png");
         backButton.getButtonSprite().setPosition(20, 20);
     }
@@ -35,10 +32,8 @@ public class ComingsoonScreen implements Screen {
     @Override
     public void render(float delta) {
         batch.begin();
-        // Draw background
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        // Handle hovering and clicking
         Vector2 touch = new Vector2(Gdx.input.getX(),
                 Gdx.graphics.getHeight() - Gdx.input.getY());
 
@@ -51,7 +46,6 @@ public class ComingsoonScreen implements Screen {
             backButton.getButtonSprite().setScale(1.0f);
         }
 
-        // Draw back button
         backButton.getButtonSprite().draw(batch);
         batch.end();
     }
