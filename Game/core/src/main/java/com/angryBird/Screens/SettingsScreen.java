@@ -46,7 +46,7 @@ public class SettingsScreen implements Screen {
 
 
         backButtonSprite =  backButton.getButtonSprite(); 
-        backgroundSprite = new Sprite(new Texture("pauseBackground.jpg"));
+        backgroundSprite = new Sprite(new Texture("pauseBackground.png"));
         musicSprite = musicLevel.getButtonSprite();
         soundSprite = soundLevel.getButtonSprite();
         spriteBatch = new SpriteBatch();
