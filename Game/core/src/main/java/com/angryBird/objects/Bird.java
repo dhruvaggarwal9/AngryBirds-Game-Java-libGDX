@@ -12,13 +12,7 @@ public class Bird extends Character{
 
     }
 
-    public String getName(){
-        return myName;
-    }
 
-    public Texture getImg(){
-        return myImg;
-    }
     public int getStrength(){
         return 0;
     }
