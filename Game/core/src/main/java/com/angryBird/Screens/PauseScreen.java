@@ -34,7 +34,7 @@ public class PauseScreen implements Screen {
         this.game = game;
         this.levelScreen = level;
 
-        backSprite = new Sprite(new Texture("pauseBackground.jpg"));
+        backSprite = new Sprite(new Texture("pauseBackground.png"));
         resumeSprite = resume.getButtonSprite();
         returnSprite = returnHome.getButtonSprite();
         saveGameSprite = saveGame.getButtonSprite();
