@@ -112,7 +112,7 @@ public class MainScreen implements Screen {
             } else if (hoveredButtonIndex == 1) {
                 game.setScreen(new ComingsoonScreen(game));
             } else if (hoveredButtonIndex == 2) {
-                //profile button click
+                game.setScreen(new ProfileScreen(game));
             }else if(hoveredButtonIndex == 3){
                 game.setScreen(new SettingsScreen(game, this));
             }
