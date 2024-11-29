@@ -1,31 +1,36 @@
 package com.angryBird.objects;
 
-public class Pig extends Character {
-    
-    // private int Strength;
-    // private String ability;
-    // private int height;
-    // private int width;
+import java.io.Serializable;
 
+public class Pig extends Character implements Serializable {
+    private static final long serialVersionUID = 1L; // Serialization version control
+    private int health;
+    private transient String imgName; // Transient since Character's imgName isn't serialized
 
-    public Pig(String name,String imgName,int h, int w){
-        super(name,imgName);
-        // height = h;
-        // width = w;
+    public Pig(String name, String imgName, int h, int w, int health) {
+        super(name, imgName);
+        this.imgName = imgName; // Store the image name for reloading
+        this.health = health;
     }
 
-    public void useAbility(){
-
+    public void useAbility() {
+        // Ability logic
     }
 
-
-
-
-    public  int getStrength(){
-        return 0;
+    public int getHealth() {
+        return health;
     }
-    
-    public  void setSound(){
 
+    public void reduceHealth(int x) {
+        health -= x;
     }
+
+    public int getStrength() {
+        return 0; // Placeholder
+    }
+
+    public void setSound() {
+        // Sound logic
+    }
+
 }
