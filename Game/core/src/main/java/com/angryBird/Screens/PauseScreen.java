@@ -1,8 +1,7 @@
 package com.angryBird.Screens;
 
 import com.angryBird.Main;
-import com.angryBird.objects.Button;
-import com.angryBird.objects.Level;
+import com.angryBird.objects.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,14 +9,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
 public class PauseScreen implements Screen {
-    
+
     // Texture background;
     private Button resume;
     private Button returnHome;
     private Button saveGame;
     private Main game;
-    private LevelScreen levelScreen;
+    private LevelScreenM levelScreen;
 
     private Sprite backSprite;
     private Sprite resumeSprite;
@@ -25,9 +28,9 @@ public class PauseScreen implements Screen {
     private Sprite saveGameSprite;
     private SpriteBatch spriteBatch;
     private Vector2 touch;
-    public PauseScreen(Main game,LevelScreen level){
+    public PauseScreen(Main game,LevelScreenM level){
 
-        // Button tesButton = new 
+        // Button tesButton = new
         resume = new Button("resume5.png");
         returnHome = new Button("returnHome5.png");
         saveGame = new Button("saveGame5.png");
@@ -57,13 +60,55 @@ public class PauseScreen implements Screen {
     }
 
 
+    public void saveGame() {
+        try {
+ 
+            int j = levelScreen.loadedBirdNum;
+            Level l = levelScreen.getLevel();
+            l.removebird((j));
+            System.out.println("save click kiya");
+            int currentLevelIndex = 1;
+            ArrayList<Bird> unlockedBirds = new ArrayList<>();
+            for (Bird bird : game.getBirdsUnlocked()) {
+                unlockedBirds.add(bird);
+            }
+
+            ArrayList<Pig> unlockedPigs = new ArrayList<>();
+            for (Pig pig : game.getPigsAvailable()) {
+                unlockedPigs.add(pig);
+            }
+
+            ArrayList<Building> unlockedBuildings = new ArrayList<>();
+//            for (Building building : game.getBuildingsAvailable()) {
+//                unlockedBuildings.add(building);
+//            }
+
+
+            GameState gameState = new GameState(currentLevelIndex, unlockedBirds, unlockedPigs, unlockedBuildings);
+
+            // Save to file
+            FileOutputStream fileOut = new FileOutputStream("game_save.dat");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(gameState);
+            out.close();
+            fileOut.close();
+            System.out.println("Game saved successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public void handleInput(){
+
+
 
         if (Gdx.input.justTouched()) {
 
             touch.set(Gdx.input.getX(),Gdx.graphics.getHeight()-Gdx.input.getY());
 
-        
+
             if(returnSprite.getBoundingRectangle().contains(touch)){
                 levelScreen.dispose();
                 game.setScreen(new MainScreen(game));
@@ -71,7 +116,10 @@ public class PauseScreen implements Screen {
             else if(resumeSprite.getBoundingRectangle().contains(touch)){
                 game.setScreen(levelScreen);
             }
-          
+            else if(saveGameSprite.getBoundingRectangle().contains(touch)){
+                saveGame();
+                game.setScreen(new MainScreen(game));
+            }
         }
     }
     @Override
@@ -87,7 +135,7 @@ public class PauseScreen implements Screen {
         saveGameSprite.draw(spriteBatch);
         spriteBatch.end();
     }
-        
+
     @Override
     public void show() {
         // Prepare your screen here.
