@@ -47,6 +47,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 public class LevelScreenM  implements Screen, InputProcessor {
 
     private Button pauseButton;
+    private float loseTimer = 0f;
+    private boolean isLoseConditionMet = false;
     private Sprite pauseButtonSprite;
     private Level level;
     private Main game;
@@ -67,6 +69,8 @@ public class LevelScreenM  implements Screen, InputProcessor {
     private SpriteBatch spriteBatch;
     private Vector2 touch;
     Body platform;
+
+    private int numbird;
 
     // Body birdBaseBody;
     // Body pigBaseBody;
@@ -137,7 +141,7 @@ public class LevelScreenM  implements Screen, InputProcessor {
 
 
         impulse = new Vector2();
-        
+
         blocks =new ArrayList<Block>();
         for (Block block : level.getBuilding().getBlocks()){
                 blocks.add(block);
@@ -146,7 +150,7 @@ public class LevelScreenM  implements Screen, InputProcessor {
         blockSprites = new ArrayList<Sprite>();
         blockPositions = level.getBuilding().getBlockPositions();
         pauseButton = new Button("pause4.png");
-        
+
 
         //createWorld and pov
         world = new World(new Vector2(0, -9.8f), true);
@@ -156,7 +160,7 @@ public class LevelScreenM  implements Screen, InputProcessor {
         createAndResizeSprite();
         createBoxes();
 
-        
+
         // world.setContactListener(collisionHandler);
 
         System.out.println(myPigs.size());
@@ -196,7 +200,7 @@ public class LevelScreenM  implements Screen, InputProcessor {
             int touchx = Gdx.input.getX();
             int touchy = Gdx.graphics.getHeight() - Gdx.input.getY();
             touch.set(touchx, touchy);
-            
+
             System.out.println(touch);
 
         }
@@ -215,7 +219,9 @@ public class LevelScreenM  implements Screen, InputProcessor {
             System.out.println("Launch Vector: " + launch);
             System.out.println("Loaded Body Position: " + loadedBody.getWorldCenter());
 
-
+            if (loadedBirdNum == birdBodies.size() -1){
+                numbird = loadedBirdNum +1;
+            }
 
 
             launched = true;
@@ -233,7 +239,7 @@ public class LevelScreenM  implements Screen, InputProcessor {
     public void createAndResizeSprite(){
 
         float unitWidth  = Gdx.graphics.getWidth()/192;             // 1 unitWidth = 10 pixels
-        float unitHeight  = Gdx.graphics.getHeight()/108;           // 1 unitHeight = 10 pixels   
+        float unitHeight  = Gdx.graphics.getHeight()/108;           // 1 unitHeight = 10 pixels
         //bird sprites
         for (Bird bird : myBirds) {
             birdSprites.add(bird.getSprite());
@@ -373,7 +379,7 @@ public class LevelScreenM  implements Screen, InputProcessor {
         num = 0;
         for (Pig pig : myPigs) {
 
-            
+
 
             Body temp = world.createBody(dynamicBody);
             FixtureDef pigProperty = new FixtureDef();
@@ -392,7 +398,7 @@ public class LevelScreenM  implements Screen, InputProcessor {
         }
 
         //Block Bodies
-        
+
         num = 0;
         for (Block block : blocks) {
 
@@ -447,7 +453,7 @@ public class LevelScreenM  implements Screen, InputProcessor {
 
         spriteBatch.begin();
 
-       
+
         backgroundSprite.draw(spriteBatch);
         // groundLayer.draw(spriteBatch);
          catapultSprite.draw(spriteBatch);
@@ -467,9 +473,15 @@ public class LevelScreenM  implements Screen, InputProcessor {
             // Increment bird number
             loadedBirdNum++;
 
+
             // Load next bird
             loadedBody = birdBodies.get(loadedBirdNum);
             loadedSprite = birdSprites.get(loadedBirdNum);
+
+//            if (loadedBirdNum == birdBodies.size() -1){
+//                numbird = loadedBirdNum +1;
+//            }
+
 
             // Reposition the bird on the catapult
             loadedBody.setTransform(new Vector2((loadedBirdNum+2)*0.75f, 3.75f), 0);
@@ -512,7 +524,15 @@ public class LevelScreenM  implements Screen, InputProcessor {
 
             // Block b = (Block) blockBodies.get(i).getUserData();
 
-            if(myPigs.get(i).getHealth() <= 0){                         
+
+//            if (loadedBirdNum +1 == birdBodies.size()  && !myPigs.isEmpty()) {
+//                loseTimer += Gdx.graphics.getDeltaTime();
+//                if (loseTimer >= 3f && loadedBirdNum +1 == birdBodies.size()  && !myPigs.isEmpty()) {
+//                    game.setScreen(new LoseScreen(game));
+//                }
+//            }
+
+            if(myPigs.get(i).getHealth() <= 0){
                 // blockBodies.get(i).destroyFixture(blockFixtures.get(i));
                 world.destroyBody(pigBodies.get(i));
                 myPigs.remove(i);
@@ -554,11 +574,11 @@ public class LevelScreenM  implements Screen, InputProcessor {
             int touchy = Gdx.graphics.getHeight() - Gdx.input.getY();
             touchx /= lamda;
             touchy /= lamda;
-                    
+
             float impulseX = initialTouchPosition.x - touchx;
             float impulseY = initialTouchPosition.y - touchy;
             float dragDistance = initialTouchPosition.dst(touchx, touchy);
-                    
+
             launch.set(impulseX, impulseY).scl(dragDistance * 12f);
 
             Vector2 velocity = new Vector2(launch.x/loadedBody.getMass(),launch.y/loadedBody.getMass());
@@ -593,9 +613,9 @@ public class LevelScreenM  implements Screen, InputProcessor {
                     }
 
 
-                
-                
-                
+
+
+
 
             shapeRenderer.end();
 
@@ -607,6 +627,10 @@ public class LevelScreenM  implements Screen, InputProcessor {
     public void handleInput(){
 
         if (Gdx.input.justTouched()) {
+
+            if (numbird == birdBodies.size()  && !myPigs.isEmpty()) {
+                game.setScreen(new LoseScreen(game));
+            }
 
             touch.set(Gdx.input.getX(),Gdx.graphics.getHeight()-Gdx.input.getY());
 
